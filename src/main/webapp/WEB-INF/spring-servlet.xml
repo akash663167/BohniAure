@@ -26,6 +26,7 @@
     <bean name="/index.html" class="com.akash.mvc.HelloController"></bean> -->
 		
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />	
+    
     <bean id="ds"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource" primary="true">
         <property name="driverClassName" value="org.postgresql.Driver" /> 
