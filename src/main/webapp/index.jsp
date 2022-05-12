@@ -217,7 +217,7 @@
                                 <div class="line"></div> <small class="or text-center">Or</small>
                                 <div class="line"></div>
                             </div>
-                            <form  id="login-form" class="frmBx" method="post" autocomplete="on">
+                            <form action="Login" id="login-form" class="frmBx" method="post" autocomplete="on">
                                 <div class="row px-3"> <label class="mb-1">
                                         <h6 class="mb-0 text-sm">Email Address</h6>
                                     </label> <input class="mb-4" type="email" id="emailid" name="emailid" placeholder="Enter a valid email address" required /> </div>
@@ -259,43 +259,42 @@
 
         <script>
 
-            $('#login-form').submit(function (e) {
-
-                e.preventDefault();
-                var   form = new FormData(e.target);
-                debugger;
-                form.append('emailid', $('#emailid').val());
-                form.append('password', $('#password').val());
-                console.log('formdata ' + form);
-
-                $.ajax({
-                    method: 'POST',
-                    data: form,
-                    url: 'Login',
-                    processData: false,
-                    contentType: false,
-                    success: function (data, textStatus, jqXHR) {
-                        console.log("respoonse" + data)
-                        if (data.trim() == 'notdone') {
-                            $('#msg-container').show();
-                            $('#msg').html('Login Failed... Please try again!!');
-                            $('#msg').addClass('alert alert-danger');
-                            $('#loader').hide();
-                            $('#submit').show();
-                        } else {
-                            window.location.href = "profile.jsp";
-                        }
-
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        $('#msg-container').show();
-                        $('#msg-container').html('Login Failed!!');
-                        $('#msg-container').addClass('bg-danger');
-                        $('#loader').hide();
-                        $('#submit').show();
-                    }
-                });
-            });
+//            $('#login-form').submit(function (e) {
+//
+//                e.preventDefault();
+//                var   form = new FormData(e.target);
+//                debugger;
+//                form.append('emailid', $('#emailid').val());
+//                form.append('password', $('#password').val());
+//                console.log('formdata ' + form);
+//
+//                $.ajax({                   method: 'POST',
+//                    data: form,
+//                    url: 'Login',
+//                    processData: false,
+//                    contentType: false,
+//                    success: function (data, textStatus, jqXHR) {
+//                        console.log("respoonse" + data)
+//                        if (data.trim() == 'notdone') {
+//                            $('#msg-container').show();
+//                            $('#msg').html('Login Failed... Please try again!!');
+//                            $('#msg').addClass('alert alert-danger');
+//                            $('#loader').hide();
+//                            $('#submit').show();
+//                        } else {
+//                            window.location.href = "profile.jsp";
+//                        }
+//
+//                    },
+//                    error: function (jqXHR, textStatus, errorThrown) {
+//                        $('#msg-container').show();
+//                        $('#msg-container').html('Login Failed!!');
+//                        $('#msg-container').addClass('bg-danger');
+//                        $('#loader').hide();
+//                        $('#submit').show();
+//                    }
+//                });
+//            });
         </script>
     </body>
 </html>

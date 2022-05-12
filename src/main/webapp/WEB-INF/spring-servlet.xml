@@ -27,7 +27,7 @@
 		
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />	
     
-    <context:property-placeholder location="classpath:db-dev.properties" />
+    <context:property-placeholder location="classpath:db-prod.properties" />
     <bean id="ds"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource" primary="true">
         <property name="driverClassName" value="org.postgresql.Driver" /> 
@@ -53,7 +53,7 @@
         <property name="jpaPropertyMap">
             <map>
                 <entry key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect" />
-                <entry key="hibernate.hbm2ddl.auto" value="create"></entry>
+                <entry key="hibernate.hbm2ddl.auto" value="update"></entry>
                 <entry key="hibernate.format_sql" value="true"></entry>
             </map>
         </property>

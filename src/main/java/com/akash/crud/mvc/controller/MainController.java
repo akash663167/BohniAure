@@ -78,7 +78,6 @@ public class MainController {
     }
 
     @RequestMapping("/Login")
-    @ResponseBody
     public void loginHandler(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
 
         HttpSession session = null;

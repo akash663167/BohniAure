@@ -13,9 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import org.hibernate.Session;
-import org.hibernate.query.Query;
+import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -42,8 +40,8 @@ public class UserDao {
     public User getUserDetails(String mail, String password) throws SQLException {
         User user = null;
         String hql = "  from User u where u.email=:email and u.password=:pass ";
-        Session session = em.unwrap(Session.class);
-        Query q = session.createQuery(hql,User.class);
+       
+        Query q = em.createQuery(hql,User.class);
         q.setParameter("email", mail);
         q.setParameter("pass", password);
         List resultList = q.getResultList();
