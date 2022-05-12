@@ -1,6 +1,5 @@
 package com.akash.crud.service;
 
-import java.util.List;
 
 import com.akash.crud.entities.Product;
 
@@ -14,6 +13,6 @@ public interface IProductService {
 
 	public abstract void updateProductEmailById(String newEmail, int productId);
 
-	public abstract List<Product> getAllProductsDetails();
+//	public abstract List<Product> getAllProductsDetails();
 
 }

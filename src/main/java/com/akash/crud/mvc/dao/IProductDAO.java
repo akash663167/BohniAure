@@ -11,5 +11,5 @@ public interface IProductDAO {
 	public abstract Product getProductById(int productId);
 	public abstract void deleteProductById(int productId);
 	public abstract void updateProductEmailById(String newEmail,int productId);
-	public abstract List<Product> getAllProductsDetails();
+//	public abstract List<Product> getAllProductsDetails();
 }

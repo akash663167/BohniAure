@@ -26,6 +26,11 @@ public class MainController {
 
 	@Autowired
 	private IProductService ProductService;
+
+    public MainController(IProductService ProductService) {
+        this.ProductService = ProductService;
+    }
+        
 	
 	@InitBinder
 	public void intiBinder(WebDataBinder bind){
@@ -38,13 +43,13 @@ public class MainController {
 	}
 	
 
-	@RequestMapping("/home")
-	public String home(Model model) {
-		List<Product> allProductsDetails = this.ProductService.getAllProductsDetails();
-		model.addAttribute("productList", allProductsDetails);
-		System.out.println(allProductsDetails);
-		return "home";
-	}
+//	@RequestMapping("/home")
+//	public String home(Model model) {
+//		List<Product> allProductsDetails = this.ProductService.getAllProductsDetails();
+//		model.addAttribute("productList", allProductsDetails);
+//		System.out.println(allProductsDetails);
+//		return "home";
+//	}
 
 	@ModelAttribute
 	public void addModalAttribute(Model model) {

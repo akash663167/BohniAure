@@ -20,7 +20,7 @@ public class Product {
 	@Column
 	private String description;
 	
-	@Column(columnDefinition="number default 0")
+	@Column
 	private double price;
 
 	public long getId() {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/aop
     http://www.springframework.org/schema/aop/spring-aop.xsd
@@ -13,73 +13,72 @@
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd
             http://www.springframework.org/schema/tx 
-  http://www.springframework.org/schema/tx/spring-tx.xsd">
+ http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
 
-	<mvc:annotation-driven />
-	<mvc:default-servlet-handler />
-	<context:annotation-config />
-	<tx:annotation-driven />
-	<context:component-scan base-package="com.akash.crud" />
-	
-	<!-- <bean id="HandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/> 
-		<bean name="/index.html" class="com.akash.mvc.HelloController"></bean> -->
+    <mvc:annotation-driven />
+    <mvc:default-servlet-handler />
+    <context:annotation-config />
+    
+    <context:component-scan base-package="com.akash.crud" />
+            
+    <!-- <bean id="HandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/> 
+    <bean name="/index.html" class="com.akash.mvc.HelloController"></bean> -->
 		
-		
-	 <bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="ec2-54-157-184-154.compute-1.amazonaws.com/d16jrd4c5fv5nm" />
-		<property name="username" value="ubdc69ckcj6vmh" />
-		<property name="password" value="paf3e082fa4375cefe27760e1c50c50526416e46989e3c826b8fd7767d497ef00" />
-	</bean>
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />	
+    <bean id="ds"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource" primary="true">
+        <property name="driverClassName" value="org.postgresql.Driver" /> 
+        <property name="url" value="jdbc:postgresql://localhost:5432/BohniAure" />
+        <property name="username" value="postgres" />
+        <property name="password" value="root" />	
+    </bean>
 	
-	<bean id=""
-		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		 <property name="packagesToScan" value="net.javaguides.springmvc.entity" 
-			/> 
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-			</props>
-		</property>
+    <bean id="jpaVendorAdapter" 
+          class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="showSql" value="true"/>
+        <property name="generateDdl" value="true"/>
+        <property name="databasePlatform" value="org.hibernate.dialect.PostgreSQL10Dialect"/>
+    </bean>
 
-		<property name="annotatedClasses">
-			<list>
-				<value>com.akash.crud.entities.Product</value>
-			</list>
-		</property>
-	</bean>
-	<!-- Step 3: Setup Hibernate transaction manager -->
-	<bean id="myTransactionManager" name="transactionManager"
-		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="hibernateTemplate"
-		class="org.springframework.orm.hibernate5.HibernateTemplate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-		
-	<bean id="simpleMappingExceptionResolver"
-		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<property name="defaultErrorView" value="/WEB-INF/views/exception.jsp"/>
-	</bean>
-	
-	<!-- Step 4: Enable configuration of trnsactional behavior based on annotations -->
-	
-	<!-- Add support for reading web resources: css, images, js, etc ...
-	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
- -->
 
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
+    <bean id="emf" 
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="akash"/> 
+        <property name="packagesToScan" value="com.akash.crud"/>
+        <property name="dataSource" ref="ds"/>
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+        <property name="jpaPropertyMap">
+            <map>
+                <entry key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect" />
+                <entry key="hibernate.hbm2ddl.auto" value="create"></entry>
+                <entry key="hibernate.format_sql" value="true"></entry>
+            </map>
+        </property>
+        
+    </bean>
+    <!--  Transactional settings required for the JPA example to work. -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="emf" />
+    </bean>
+    <tx:annotation-driven />		
+    <bean id="simpleMappingExceptionResolver"
+          class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="defaultErrorView" value="/WEB-INF/views/exception.jsp"/>
+    </bean>
+	
+    <!-- Step 4: Enable configuration of trnsactional behavior based on annotations -->
+	
+    <!-- Add support for reading web resources: css, images, js, etc ...
+           <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+    -->
+    <bean id="persistenceExceptionTranslationPostProcessor"
+          class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+    <bean
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
 
 </beans>

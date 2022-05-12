@@ -1,6 +1,6 @@
 package com.akash.crud.service.impl;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,11 +10,16 @@ import com.akash.crud.mvc.dao.IProductDAO;
 import com.akash.crud.service.IProductService;
 
 
-@Service
+@Service("ProductService")
 public class ProductService implements IProductService{
 	
 	@Autowired
 	private IProductDAO productDao;
+        
+        public ProductService (IProductDAO productDao){
+            this.productDao = productDao;
+        }
+                
 
 	@Override
 	public void createProduct(Product product) {
@@ -40,10 +45,10 @@ public class ProductService implements IProductService{
 		this.productDao.updateProductEmailById(newEmail, productId);
 	}
 
-	@Override
-	public List<Product> getAllProductsDetails() {
-		
-		return this.productDao.getAllProductsDetails();
-	}
+//	@Override
+//	public List<Product> getAllProductsDetails() {
+//		
+//		return this.productDao.getAllProductsDetails();
+//	}
 
 }

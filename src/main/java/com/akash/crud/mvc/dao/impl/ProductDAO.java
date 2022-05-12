@@ -1,41 +1,41 @@
 package com.akash.crud.mvc.dao.impl;
 
-import java.util.List;
 
-import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.akash.crud.entities.Product;
 import com.akash.crud.mvc.dao.IProductDAO;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.springframework.transaction.annotation.Transactional;
 
-@Repository
+@Repository("productDao")
 public class ProductDAO implements IProductDAO {
 
-	@Autowired
-	private HibernateTemplate hibernateTemplate;
+	@PersistenceContext
+	private EntityManager em;
 
 	@Override
 	@Transactional
 	public void createProduct(Product product) {
 		// TODO Auto-generated method stub
-		this.hibernateTemplate.save(product);
+		this.em.persist(product);
+                this.em.flush();
 	}
 
 	@Override
 	public Product getProductById(int productId) {
 		// TODO Auto-generated method stub
-		Product product = this.hibernateTemplate.get(Product.class, productId);
+		Product product = this.em.find(Product.class, productId);
 		return product;
 	}
 
 	@Override
 	public void deleteProductById(int productId) {
 		// TODO Auto-generated method stub
-		Product product = this.hibernateTemplate.load(Product.class, productId);
-		this.hibernateTemplate.delete(product);
+		Product product = this.em.find(Product.class, productId);
+		this.em.remove(product);
 
 	}
 
@@ -45,11 +45,5 @@ public class ProductDAO implements IProductDAO {
 
 	}
 
-	@Override
-	public List<Product> getAllProductsDetails() {
-		// TODO Auto-generated method stub
-
-		List<Product> productlist = this.hibernateTemplate.loadAll(Product.class);
-		return productlist;
-	}
+	
 }
