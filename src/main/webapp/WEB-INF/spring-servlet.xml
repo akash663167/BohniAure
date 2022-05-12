@@ -29,19 +29,19 @@
 	 <bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="username" value="ot" />
-		<property name="password" value="ot" />
+		<property name="url" value="ec2-54-157-184-154.compute-1.amazonaws.com/d16jrd4c5fv5nm" />
+		<property name="username" value="ubdc69ckcj6vmh" />
+		<property name="password" value="paf3e082fa4375cefe27760e1c50c50526416e46989e3c826b8fd7767d497ef00" />
 	</bean>
 	
 	<bean id=""
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<!-- <property name="packagesToScan" value="net.javaguides.springmvc.entity" 
-			/> -->
+		 <property name="packagesToScan" value="net.javaguides.springmvc.entity" 
+			/> 
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle8iDialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
