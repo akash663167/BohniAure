@@ -36,21 +36,20 @@ public class User implements java.io.Serializable {
     private String password;
     @Column
     private String gender;
-    @Column
-    private Timestamp timestamp;
+    
 
     public User() {
     }
 
     
-    public User(int id, String contactNo, String name, String email, String password, String gender, Timestamp timestamp) {
+    public User(int id, String contactNo, String name, String email, String password, String gender) {
         this.id = id;
         this.contactNo = contactNo;
         this.name = name;
         this.email = email;
         this.password = password;
         this.gender = gender;
-        this.timestamp = timestamp;
+     
     }
 
     public int getId() {
@@ -101,17 +100,10 @@ public class User implements java.io.Serializable {
         this.gender = gender;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
-
+   
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", contactNo=" + contactNo + ", name=" + name + ", email=" + email + ", password=" + password + ", gender=" + gender + ", timestamp=" + timestamp + '}';
+        return "User{" + "id=" + id + ", contactNo=" + contactNo + ", name=" + name + ", email=" + email + ", password=" + password + ", gender=" + gender +" );";
     }
     
     
