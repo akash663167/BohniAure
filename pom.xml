@@ -169,14 +169,72 @@
         </dependency>
 
     </dependencies>
-    <build>
-        <finalName>BohniAure</finalName>
-        <!-- <plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> 
-        <configuration> or whatever version you use <source>1.8</source> <target>1.8</target> 
-        </configuration> </plugin> </plugins> -->
-
-
-
-    </build>
+    <build>  
+        <plugins>  
+            <plugin>  
+                <!-- Build an executable JAR -->  
+                <groupId>org.apache.maven.plugins</groupId>  
+                <artifactId>maven-jar-plugin</artifactId>  
+                <version>3.5.1</version> 
+                <configuration>  
+                    <archive>  
+                        <manifest>  
+                            <mainClass>Test</mainClass>  
+                        </manifest>  
+                    </archive> 
+                    <lifecycleMappingMetadata>
+                        <pluginExecutions>
+                            <!-- copy-dependency plugin -->
+                            <pluginExecution>
+                                <pluginExecutionFilter>
+                                    <groupId>org.apache.maven.plugins</groupId>
+                                    <artifactId>maven-dependency-plugin</artifactId>
+                                    <versionRange>[1.0.0,)</versionRange>
+                                    <goals>
+                                        <goal>copy-dependencies</goal>
+                                    </goals>
+                                </pluginExecutionFilter>
+                                <action>
+                                    <ignore />
+                                </action>
+                            </pluginExecution>
+                        </pluginExecutions>
+                    </lifecycleMappingMetadata>				
+                </configuration>
+		
+            </plugin>  
+        
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.github.jsimone</groupId>
+                                    <artifactId>webapp-runner</artifactId>
+                                    <version>9.0.13.0</version>
+                                    <destFileName>webapp-runner.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+		
+        </plugins>  
+    </build>  
     <name>BohniAure</name>
 </project>
