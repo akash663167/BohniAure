@@ -8,24 +8,23 @@ package com.akash.crud.mvc.dao.impl;
 
 import com.akash.crud.entities.User;
 
-
 import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Admin
  */
-
 @Repository
 public class UserDao {
 
-    @PersistenceContext
-    private EntityManager em;
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
 
     public int SaveUser(User user) {
 
@@ -33,24 +32,32 @@ public class UserDao {
     }
 
     public int updateUser(User user) {
-       
+
         return 0;
     }
 
-    public User getUserDetails(String mail, String password) throws SQLException {
+    public User getUserDetails(String mail, String password)  {
         User user = null;
         String hql = "  from User u where u.email=:email and u.password=:pass ";
+
+        EntityManager em = entityManagerFactory.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            
        
-        Query q = em.createQuery(hql,User.class);
+        Query q = em.createQuery(hql, User.class);
         q.setParameter("email", mail);
         q.setParameter("pass", password);
         List resultList = q.getResultList();
-        System.out.println("mail "+mail);
-       User u= (User) q.getSingleResult();
-        System.out.println("login ssuec " + u);
-       
+        System.out.println("mail " + mail);
+        user = (User) q.getSingleResult();
+        System.out.println("login ssuec " + user);
 
+        em.getTransaction().commit();
+         } catch (Exception e) {
+             em.getTransaction().rollback();
+        }
         // ConnectionProvider.closeConnection(con, ps, rs);
-        return u;
+        return user;
     }
 }

@@ -22,7 +22,9 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
@@ -77,22 +79,23 @@ public class MainController {
         return rdd;
     }
 
-    @RequestMapping("/Login")
-    public void loginHandler(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+    
+    @RequestMapping( value = "/Login",method = RequestMethod.POST)
+    public void loginHandler(@RequestParam(value = "emailid",required = false) String emailid,@RequestParam(value = "password",required = false) String password,HttpServletResponse response ) throws IOException, SQLException {
 
         HttpSession session = null;
-        String email = request.getParameter("emailid");
-        String password = request.getParameter("password");
+//        String email = request.getParameter("emailid");
+//        String password = request.getParameter("password");
         
         System.err.println("password  "+ password);
-        User user = userdao.getUserDetails(email, password);
+        User user = userdao.getUserDetails(emailid, password);
         try (PrintWriter out = response.getWriter()) {
 
             if (user == null) {
                 out.println("notdone");
             } else {
-                session = request.getSession(true);
-                session.setAttribute("CurrentUser", user);
+                //session = request.getSession(true);
+                //session.setAttribute("CurrentUser", user);
                 response.sendRedirect("exception.jsp");
             }
         }

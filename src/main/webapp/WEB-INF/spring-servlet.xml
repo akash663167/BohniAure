@@ -27,7 +27,7 @@
 		
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />	
     
-    <context:property-placeholder location="classpath:db-prod.properties" />
+    <context:property-placeholder location="classpath:db-dev.properties" />
     <bean id="ds"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource" primary="true">
         <property name="driverClassName" value="org.postgresql.Driver" /> 
@@ -47,7 +47,11 @@
     <bean id="emf" 
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="akash"/> 
-        <property name="packagesToScan" value="com.akash.crud"/>
+        <property name="packagesToScan">
+            <list>
+                <value>com.akash.crud</value>
+            </list>
+        </property>
         <property name="dataSource" ref="ds"/>
         <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
         <property name="jpaPropertyMap">
