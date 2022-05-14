@@ -23,6 +23,8 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -92,12 +94,12 @@ public class MainController {
             }
         }
     }
-    
-    @RequestMapping("/area")
+        
+    @RequestMapping(value = "area",produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String getAreawiseAudienceData(){
-    
-        return audienceRepository.findAll().toString();
+    public ResponseEntity getAreawiseAudienceData(){
+        System.err.println("audienceRepository"+audienceRepository.findAll());
+        return  ResponseEntity.ok(audienceRepository.findAll());
     }
 
 }
