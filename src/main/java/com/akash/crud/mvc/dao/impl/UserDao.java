@@ -14,17 +14,23 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Admin
  */
-@Repository
+@Component
 public class UserDao {
 
     @Autowired
-    private EntityManagerFactory entityManagerFactory;
+    private final EntityManagerFactory entityManagerFactory;
+
+    public UserDao(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
+
+    }
 
     public int SaveUser(User user) {
 
@@ -36,28 +42,26 @@ public class UserDao {
         return 0;
     }
 
-    public User getUserDetails(String mail, String password)  {
+    public User getUserDetails(String mail, String password) {
         User user = null;
         String hql = "  from User u where u.email=:email and u.password=:pass ";
 
         EntityManager em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
         try {
-            
-       
-        Query q = em.createQuery(hql, User.class);
-        q.setParameter("email", mail);
-        q.setParameter("pass", password);
-        List resultList = q.getResultList();
-        System.out.println("mail " + mail);
-        user = (User) q.getSingleResult();
-        System.out.println("login ssuec " + user);
 
-        em.getTransaction().commit();
-         } catch (Exception e) {
-             em.getTransaction().rollback();
+            Query q = em.createQuery(hql, User.class);
+            q.setParameter("email", mail);
+            q.setParameter("pass", password);
+            List resultList = q.getResultList();
+            System.out.println("mail " + mail);
+            user = (User) q.getSingleResult();
+            System.out.println("login ssuec " + user);
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
         }
-        // ConnectionProvider.closeConnection(con, ps, rs);
         return user;
     }
 }
