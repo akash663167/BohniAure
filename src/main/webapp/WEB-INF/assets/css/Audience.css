@@ -1,0 +1,91 @@
+.popWrapper > * {
+  border-radius: 5px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.popWrapper > * .head > *:first-child {
+  color: #6c9ae5;
+  font-size: 25px;
+}
+.popWrapper .body_area {
+  padding: 2rem 1rem;
+}
+.popWrapper .body_area > input {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #ddd;
+  padding: 0rem 1rem;
+  margin-bottom: 3rem;
+  outline: none;
+}
+
+.popWrapper .bottom {
+  border-top: 1px solid #ddd;
+}
+.email_you_popup .head {
+  justify-content: flex-end;
+}
+.email_you_popup .head i {
+  color: #000 !important;
+}
+.email_you_popup .body_area h1 {
+  font-weight: 400;
+  text-align: center;
+  font-weight: 25px;
+  margin: 3rem 0rem;
+}
+.dashboard_body {
+  position: relative;
+}
+.dashboard_body > a {
+  display: flex;
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  transform: translateX(-20%);
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 180px;
+  padding: 0rem 0.5rem;
+  border-radius: 7px;
+  font-weight: 600;
+  border: none;
+  background-color: #032c92;
+  color: #fff;
+  outline: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+.dashboard_body > a i {
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 1240px) {
+  .table_area {
+    overflow: auto;
+  }
+  .table_area table {
+    width: 1300px;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .burger_icon {
+    display: block !important;
+  }
+  .dashboard_body > a {
+    top: 30px;
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .search_area {
+    padding: 0rem 2rem;
+    height: 100%;
+  }
+  .search_area .input_wrapper {
+    flex: unset;
+  }
+}

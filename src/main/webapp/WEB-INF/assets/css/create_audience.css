@@ -1,0 +1,210 @@
+.popWrapper .body_area > input {
+  margin-bottom: 1rem;
+}
+.popWrapper h1 {
+  font-size: 30px;
+  margin-left: 20px !important;
+  margin-bottom: 0px;
+}
+.dashboardbody_wraper {
+  position: relative;
+  flex: 1;
+  box-shadow: 0px -20px 25px rgba(0, 0, 0, 0.2);
+}
+.dashboard_body {
+  height: 100vh;
+  overflow: auto;
+  padding-bottom: 10rem;
+}
+.group_wrapper {
+  margin-top: 2rem;
+}
+.group_wrapper .group .head {
+  background-color: #fff;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+.group_wrapper .group .head p {
+  flex: 1;
+  margin-bottom: 0px;
+}
+.group_wrapper .group .head > * + * {
+  margin-left: 1rem;
+}
+
+.group_wrapper .group .body_area .row_custom {
+  padding: 2rem 2rem;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  display: grid;
+  grid-template-columns: 0.4fr 0.2fr 1fr;
+  grid-gap: 10px;
+  align-items: flex-start;
+  position: relative;
+}
+.group_wrapper .group .body_area .row_custom > *:last-child {
+  width: 80%;
+}
+
+.or_select {
+  position: absolute;
+  bottom: -20px;
+  left: 30px;
+  z-index: 9;
+}
+.or_select select {
+  border-radius: 99px;
+  background-color: #7c818d;
+  color: #fff;
+}
+.or_select .form-select {
+  background-image: url(../img/arrow_down.svg);
+}
+
+.group_wrapper .group .body_area .row_custom .icon_wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+.group_wrapper .group .body_area .row_custom .icon_wrapper i {
+  color: #ee0000;
+}
+.dselect-wrapper .dselect-tag {
+  background-color: #0553d4;
+}
+.or_button {
+  background-color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.or_button button {
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #032c92;
+  border: 1px solid #032c92;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+}
+.or_button button:disabled {
+  opacity: 0.8;
+  pointer-events: none;
+}
+.or_button button i {
+  margin-right: 10px;
+}
+.answer {
+  display: none;
+}
+.answer.active {
+  display: block;
+}
+.loader {
+  width: 50px;
+  display: none;
+}
+.loader.active {
+  display: block;
+}
+.bottom_calulation_Araea {
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0px;
+  bottom: 0px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 99;
+}
+.bottom_calulation_Araea .calculate_button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.bottom_calulation_Araea .calculate_button i {
+  margin-right: 10px;
+  color: #032c92;
+}
+.bottom_calulation_Araea h1 {
+  font-size: 12px;
+  color: rgb(111, 110, 110);
+  text-transform: uppercase;
+}
+.bottom_calulation_Araea p {
+  color: #032c92;
+  margin-bottom: 0px;
+  font-size: 20px;
+}
+.bottom_calulation_Araea .save_aud {
+  width: 160px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #032c92;
+  border: 1px solid #032c92;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1150px) {
+  .or_select {
+    left: 40px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .group_wrapper .group .body_area .row_custom {
+    grid-template-columns: 1fr 1fr;
+  }
+  .group_wrapper .group .body_area .row_custom > *:last-child {
+    grid-column: span 2;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 722px) {
+  .group_wrapper .group .body_area .row_custom {
+    grid-template-columns: 1fr 1fr;
+  }
+  .group_wrapper .group .body_area .row_custom > *:nth-child(4) {
+    grid-column: span 2;
+  }
+  .group_wrapper .group .body_area .row_custom .icon_wrapper {
+    grid-column: span 1;
+  }
+}
+@media screen and (max-width: 450px) {
+  .group_wrapper .group .body_area .row_custom > * {
+    grid-column: span 2 !important;
+  }
+  .dashboard_body > h1 {
+    font-size: 25px;
+  }
+  .dashboard_body {
+    padding: 2rem 1rem;
+  }
+  .dashboard_body {
+    padding-bottom: 15rem;
+  }
+  .bottom_calulation_Araea {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .bottom_calulation_Araea > * + * {
+    margin-top: 1rem;
+  }
+}

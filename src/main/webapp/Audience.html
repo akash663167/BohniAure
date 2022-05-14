@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- font awesome -->
+    <script
+      src="https://kit.fontawesome.com/2eb177939b.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="./assets/css/common.css" />
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <link rel="stylesheet" href="./assets/css/Audience.css" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <section class="popWrapper email_you_popup">
+      <div class="popup">
+        <div class="head">
+          <span class="close_icon"><i class="fa-solid fa-xmark"></i></span>
+        </div>
+        <div class="body_area">
+          <h1>Au - RE will email you in 48 hours</h1>
+        </div>
+        <div class="bottom"></div>
+      </div>
+    </section>
+    <section class="popWrapper account_id_popup">
+      <div class="popup">
+        <div class="head">
+          <i class="fa-solid fa-sd-card"></i>
+          <h1>Ad Account ID</h1>
+
+          <span class="close_icon"><i class="fa-solid fa-xmark"></i></span>
+        </div>
+        <div class="body_area">
+          <input type="text" placeholder="Accont ID" />
+        </div>
+        <div class="bottom">
+          <div class="button_wrapper">
+            <button>Cancel</button>
+            <button class="save_button_account">Save</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashobard_container">
+      <aside>
+        <a href="#" class="logo"> Au-Re </a>
+
+        <nav>
+          <li>
+            <a href="./index.html"> Dashboard </a>
+          </li>
+          <li>
+            <a href="./CreateAudience.html"> Create Audience </a>
+          </li>
+          <li class="active">
+            <a href="./Audience.html"> My Audience </a>
+          </li>
+          <li>
+            <a href="./AddPIO.html"> Add POI </a>
+          </li>
+        </nav>
+      </aside>
+
+      <section class="dashboard_body">
+        <h1>My Audiences</h1>
+        <div class="burger_icon">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </div>
+        <a href="./CreateAudience.html"
+          >Create Audiences <i class="fa-solid fa-plus"></i
+        ></a>
+
+        <form class="search_area">
+          <div class="input_wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="text"
+              placeholder="Search your Audience"
+              id="searchinput"
+            />
+          </div>
+        </form>
+
+        <div class="table_area">
+          <table>
+            <thead>
+              <tr>
+                <td>Audience Name</td>
+                <td>Destination<i class="fa-solid fa-sort"></i></td>
+                <td>CreatedOn<i class="fa-solid fa-sort"></i></td>
+                <td>Count<i class="fa-solid fa-sort"></i></td>
+                <td>Visits<i class="fa-solid fa-sort"></i></td>
+                <td>Status<i class="fa-solid fa-sort"></i></td>
+                <td><p style="margin-left: 70px">Activate</p></td>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <script src="./assets/js/common.js"></script>
+    <script src="./assets/js/Audience.js" type="module"></script>
+  </body>
+</html>
