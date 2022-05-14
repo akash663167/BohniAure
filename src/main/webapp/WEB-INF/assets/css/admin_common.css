@@ -1,0 +1,189 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+body {
+  background-color: #f2f4f8;
+  font-family: "Roboto", sans-serif;
+}
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+.burger_icon {
+  display: none;
+}
+nav,
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+.dashboard_body {
+  flex: 1;
+  overflow: auto;
+  height: 100vh;
+}
+.dashboard_layout {
+  display: flex;
+}
+
+.body_area_inner {
+  padding: 3rem;
+}
+
+.Sidebar {
+  height: 100vh;
+  width: 260px;
+
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 0 21px 0 rgb(89 102 122 / 10%);
+}
+
+.Sidebar .logo_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  height: 90px;
+  box-shadow: 0 0 21px 0 rgb(89 102 122 / 10%);
+}
+.Sidebar .logo_wrapper span {
+  display: block;
+  margin-top: 3px;
+}
+.Sidebar .logo_wrapper img {
+  width: 170px;
+}
+
+.Sidebar > nav {
+  padding: 2rem 1.5rem;
+}
+.Sidebar > nav svg {
+  min-width: 24px;
+}
+.Sidebar > nav li a {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.Sidebar > nav li h1 {
+  color: rgb(99, 98, 98);
+  font-weight: 500;
+  font-size: 17px;
+  margin-left: 10px;
+  margin-top: 2px;
+  text-transform: uppercase;
+}
+
+.Sidebar > nav li:hover h1 {
+  color: #001e5b;
+}
+
+.Sidebar > nav li > *:first-child {
+  color: rgb(99, 98, 98);
+  font-size: 22px;
+}
+.Sidebar > nav li .icon_wrapper {
+  width: 30px;
+
+  text-align: center;
+  margin-right: 10px;
+}
+.Sidebar > nav li.active > *:first-child {
+  color: #001e5b;
+}
+.Sidebar > nav {
+  display: flex;
+  flex-direction: column;
+}
+.burger_icon {
+  height: 90px;
+  box-shadow: 0 0 21px 0 rgb(89 102 122 / 10%);
+  background-color: #fff;
+  padding: 0rem 2rem;
+
+  align-items: center;
+  justify-content: flex-end;
+}
+.header nav {
+  display: flex;
+  align-items: center;
+}
+.header nav > * + * {
+  margin-left: 1.5rem;
+}
+.header nav .profile_area {
+  display: flex;
+  align-items: center;
+}
+.Sidebar .name_profile {
+  display: flex;
+  align-items: center;
+}
+.Sidebar .profile_area {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+.Sidebar .profile_area .name_profile i {
+  margin-left: 10px;
+}
+.Sidebar .profile_area h1 {
+  font-size: 16px;
+}
+.Sidebar .profile_area p {
+  font-size: 13px;
+}
+.Sidebar .profile_area .icon_wrapper {
+  width: 55px;
+  height: 45px;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+.Sidebar .profile_area .icon_wrapper img {
+  margin-right: 0px !important;
+}
+.Sidebar .profile_area h1 {
+  margin-left: 0px !important;
+}
+.Sidebar .profile_area .name_profile {
+}
+.Sidebar .profile_area .icon_wrapper img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+@media screen and (max-width: 1000px) {
+  .header {
+    justify-content: space-between;
+  }
+  .Sidebar {
+    position: fixed;
+    left: 0px;
+    z-index: 999999;
+    left: -100%;
+    transition: 0.3s ease all;
+  }
+  .Sidebar.active {
+    left: 0px;
+  }
+  .burger_icon {
+    display: flex;
+  }
+  .Sidebar {
+    width: 220px;
+  }
+  .Sidebar .logo_wrapper img {
+    width: 130px;
+  }
+  .Sidebar > nav li a {
+    padding-left: 0px;
+  }
+}

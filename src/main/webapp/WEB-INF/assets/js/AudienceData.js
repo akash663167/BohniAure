@@ -1,0 +1,42 @@
+export const AudienceData = [
+  {
+    AudienceName: "All MAIDS",
+    Destination: "Facebook",
+    CreatedOn: "28/02/2022",
+    Count: "145,341,545",
+    Visits: "145",
+    Status: "ready",
+  },
+  {
+    AudienceName: "In-Market Property 28-01-22",
+    Destination: "Facebook",
+    CreatedOn: "31/01/2022",
+    Count: "60,361",
+    Visits: "60",
+    Status: "ready",
+  },
+  {
+    AudienceName: "In-Market Property 28-01-22",
+    Destination: "-",
+    CreatedOn: "28/01/2022",
+    Count: "60,361",
+    Visits: "145",
+    Status: "ready",
+  },
+  {
+    AudienceName: "Property Buyers November",
+    Destination: "-",
+    CreatedOn: "03/12/2021",
+    Count: "64,278,136",
+    Visits: "145",
+    Status: "ready",
+  },
+  {
+    AudienceName: "Mumbai_Property_90",
+    Destination: "Facebook",
+    CreatedOn: "23/09/2021",
+    Count: "11,378,805",
+    Visits: "145",
+    Status: "processing",
+  },
+];

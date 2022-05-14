@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- font awesome -->
+    <script
+      src="https://kit.fontawesome.com/2eb177939b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./deselect/css/dselect.css" />
+    <link rel="stylesheet" href="./assets/css/common.css" />
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <link rel="stylesheet" href="./assets/css/Audience.css" />
+    <link rel="stylesheet" href="./assets/css/create_audience.css" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <section class="popWrapper email_you_popup">
+      <div class="popup">
+        <div class="head">
+          <i class="fa-solid fa-sd-card"></i>
+          <h1>Audience Name</h1>
+
+          <span class="close_icon"><i class="fa-solid fa-xmark"></i></span>
+        </div>
+        <div class="body_area">
+          <input type="text" placeholder="Enter Project Name" />
+          <input type="text" placeholder="Enter Audience Name" />
+        </div>
+        <div class="bottom">
+          <div class="button_wrapper">
+            <button class="cancel_button">Cancel</button>
+            <button class="save_button_account">Save</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+
+    <section class="dashobard_container">
+      <aside>
+        <a href="#" class="logo"> Au-Re </a>
+
+        <nav>
+          <li>
+            <a href="./index.html"> Dashboard </a>
+          </li>
+          <li class="active">
+            <a href="./Audience.html"> Create Audience </a>
+          </li>
+          <li >
+            <a href="./Audience.html"> My Audience </a>
+          </li>
+          <li>
+            <a href="./AddPIO.html"> Add POI </a>
+          </li>
+        </nav>
+      </aside>
+
+  <div class="dashboardbody_wraper">
+    <section class="dashboard_body">
+      <h1>Create Audiences</h1>
+
+      <div class="burger_icon">
+        <i class="fa-solid fa-bars-staggered"></i>
+      </div>
+
+      <section class="group_wrapper">
+        <div class="group">
+          <div class="head">
+            <p>Group 1</p>
+            <i class="fa-solid fa-chevron-up"></i
+            ><i class="fa-solid fa-xmark"></i>
+          </div>
+          <div class="body_area">
+            <div class="row_custom">
+              <div class="or_select">
+                <select class="form-select">
+                  <option value="OR">OR</option>
+                  <option value="AND">AND</option>
+                </select>
+              </div>
+             
+              <div>
+                <select class="form-select category_selection">
+                  <option value="">Select Category</option>
+                  <option value="Category">Category</option>
+                  <option value="City">City</option>
+                  <option value="Area">Area</option>
+                  <option value="POI">POI</option>
+                  <option value="Budget">Budget</option>
+                  <option value="Durations">Durations</option>
+                </select>
+              </div>
+              <div>
+                <select class="form-select" >
+                  <option value="Is">Is</option>
+                  <option value="Is">Is Not</option>
+                 
+                </select>
+              </div>  
+            
+         
+              <div class="select_right_wrapper">
+                <select class="form-select sub_values" id="example-area" multiple>
+          
+                </select>
+              </div>  
+        
+            </div>
+          </div>
+        </div>
+
+        <div class="or_button">
+          <button href="./CreateAudience.html" disabled>   <i class="fa-solid fa-plus"></i> OR </button>
+       
+          </button>
+        </div>
+      </section>
+
+
+
+
+    </section>
+    <div class="bottom_calulation_Araea">
+      <button class="calculate_button">
+        <i class="fa-solid fa-arrow-rotate-right"></i>
+        Calulate
+      </button>
+
+      <img src="./assets/img/loader.gif"  class="loader" alt="" >
+      <div class="answer">
+        <h1>estimated reach</h1>
+        <p>203</p>
+      </div>
+      <button class="save_aud">
+        Save Audience
+      </button>
+    </div>
+
+  </div>
+    </section>
+
+    <script src="https://unpkg.com/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./deselect/js/dselect.js"></script>
+
+    <script>
+      // multiple
+      dselect(document.querySelector("#example-area"));
+
+    </script>
+
+
+<!-- <script src="./assets/js/LogicCreate.js" type="module"></script> -->
+<script src="./assets/js/common.js"></script>
+<script src="./assets/js/CreateAudience.js" type="module"></script>
+  </body>
+</html>
