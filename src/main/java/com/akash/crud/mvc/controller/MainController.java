@@ -81,22 +81,22 @@ public class MainController {
 
     
     @RequestMapping( value = "/Login",method = RequestMethod.POST)
-    public void loginHandler(@RequestParam(value = "emailid",required = false) String emailid,@RequestParam(value = "password",required = false) String password,HttpServletResponse response ) throws IOException, SQLException {
+    public void loginHandler(@RequestParam(value = "emailid",required = false) String emailid,
+            @RequestParam(value = "password",required = false) String password,
+            HttpServletRequest request,
+            HttpServletResponse response ) throws IOException, SQLException {
 
         HttpSession session = null;
-//        String email = request.getParameter("emailid");
-//        String password = request.getParameter("password");
-        
-        System.err.println("password  "+ password);
+
         User user = userdao.getUserDetails(emailid, password);
         try (PrintWriter out = response.getWriter()) {
 
             if (user == null) {
                 out.println("notdone");
             } else {
-                //session = request.getSession(true);
-                //session.setAttribute("CurrentUser", user);
-                response.sendRedirect("exception.jsp");
+                session = request.getSession(true);
+                session.setAttribute("CurrentUser", user);
+                response.sendRedirect("dashboard.jsp");
             }
         }
     }

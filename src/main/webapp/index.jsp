@@ -1,4 +1,4 @@
-2<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    2<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -239,7 +239,7 @@
                 </div>
                 <div class="bg-blue py-4">
                     <center>
-                        <h2><img src="webasset/img/bohniWhite.png">Done?</h2>
+                            <h2><img src="webasset/img/bohniWhite.png">Done?</h2>
                         <!-- <p>Making Advertising More Meaningful</p> -->
                         <a href="Bohni_index.jsp" class="signup-btn"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;&nbsp;Back to Home</a>
 
