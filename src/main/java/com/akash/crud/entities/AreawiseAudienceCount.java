@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "AREAWISEAUDIENCECOUNT")
+@Table(name = "AREAWISE_AUDIENCE_COUNT")
 public class AreawiseAudienceCount {
 	
 	@Column
@@ -16,6 +16,12 @@ public class AreawiseAudienceCount {
 	
 	@Column
 	private long audienceCount;
+	
+	@Column
+	private double latitude;
+	
+	@Column
+	private double longitude;
 	
 	public AreawiseAudienceCount(){
 		
@@ -50,5 +56,21 @@ public class AreawiseAudienceCount {
 
 	public void setAudienceCount(long audienceCount) {
 		this.audienceCount = audienceCount;
+	}
+	
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 }
