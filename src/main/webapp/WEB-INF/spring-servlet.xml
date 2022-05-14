@@ -20,12 +20,12 @@
     <mvc:default-servlet-handler />
     <context:annotation-config />
     
-    <context:component-scan base-package="com.akash.crud" />
+    <context:component-scan base-package="com.akash" />
             
     <!-- <bean id="HandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/> 
     <bean name="/index.html" class="com.akash.mvc.HelloController"></bean> -->
 		
-    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />	
+    <!--    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />	
     
     <context:property-placeholder location="classpath:db-dev.properties" />
     <bean id="ds"
@@ -35,7 +35,7 @@
         <property name="username" value="${db.username}" />
         <property name="password" value="${db.password}" />	
     </bean>
-	
+        
     <bean id="jpaVendorAdapter" 
           class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
         <property name="showSql" value="true"/>
@@ -62,12 +62,12 @@
             </map>
         </property>
         
-    </bean>
-    <!--  Transactional settings required for the JPA example to work. -->
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+    </bean>-->
+    <!--Transactional settings required for the JPA example to work.--> 
+    <!--    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="emf" />
     </bean>
-    <tx:annotation-driven />		
+    <tx:annotation-driven />		--> 
     <bean id="simpleMappingExceptionResolver"
           class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="defaultErrorView" value="/WEB-INF/views/exception.jsp"/>
@@ -78,9 +78,9 @@
     <!-- Add support for reading web resources: css, images, js, etc ...
            <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
     -->
-    <bean id="persistenceExceptionTranslationPostProcessor"
-          class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
-
+    <!--    <bean id="persistenceExceptionTranslationPostProcessor"
+              class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+    -->
     <bean
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/" />

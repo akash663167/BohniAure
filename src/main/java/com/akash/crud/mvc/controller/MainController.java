@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.akash.crud.entities.Product;
 import com.akash.crud.entities.User;
+import com.akash.crud.mvc.dao.impl.AudienceRepository;
 import com.akash.crud.mvc.dao.impl.UserDao;
 import com.akash.crud.service.IProductService;
 import java.io.IOException;
@@ -25,37 +26,28 @@ import javax.servlet.http.HttpSession;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainController {
 
     @Autowired
-    private IProductService ProductService;
+    private final IProductService ProductService;
 
     @Autowired
-    private UserDao userdao;
+    private final UserDao userdao;
+    
+    @Autowired
+    private final AudienceRepository audienceRepository;
 
-    public MainController(IProductService ProductService) {
+    public MainController(IProductService ProductService,UserDao userdao,AudienceRepository audienceRepository) {
+        this.userdao = userdao;
         this.ProductService = ProductService;
+        this.audienceRepository=audienceRepository;
+                
     }
 
-    @InitBinder
-    public void intiBinder(WebDataBinder bind) {
-        bind.setDisallowedFields(new String[]{"id"});
-//		SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy");
-//		bind.registerCustomEditor(Date.class, "birthdate", new CustomDateEditor(s, false));
 
-        bind.registerCustomEditor(Double.class, "price", new CustomNumberEditor(Double.class, false));
-
-    }
-
-//	@RequestMapping("/home")
-//	public String home(Model model) {
-//		List<Product> allProductsDetails = this.ProductService.getAllProductsDetails();
-//		model.addAttribute("productList", allProductsDetails);
-//		System.out.println(allProductsDetails);
-//		return "home";
-//	}
     @ModelAttribute
     public void addModalAttribute(Model model) {
         model.addAttribute("title", "Add Product Form");
@@ -99,6 +91,13 @@ public class MainController {
                 response.sendRedirect("dashboard.jsp");
             }
         }
+    }
+    
+    @RequestMapping("/area")
+    @ResponseBody
+    public String getAreawiseAudienceData(){
+    
+        return audienceRepository.findAll().toString();
     }
 
 }
