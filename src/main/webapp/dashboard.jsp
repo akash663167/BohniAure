@@ -102,14 +102,14 @@
                                 <h1>Project</h1>
                                 <p>5667733</p>
                             </div>
-                            <div class="box_area">
+<!--                            <div class="box_area">
                                 <h1>Clubs</h1>
                                 <p>5667209</p>
                             </div>
                             <div class="box_area">
                                 <h1>Corporative Parks</h1>
                                 <p>563009</p>
-                            </div>
+                            </div>-->div
                         </div>
                         <div id="mapid"></div>
                     </div>
