@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class AreawiseAudienceCount implements Serializable {
 
     @Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
     @Column
@@ -36,6 +36,14 @@ public class AreawiseAudienceCount implements Serializable {
 
     public AreawiseAudienceCount() {
 
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public AreawiseAudienceCount(String areaName, String cityName, long audienceCount) {
