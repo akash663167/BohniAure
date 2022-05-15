@@ -67,7 +67,7 @@
 
                 <nav>
                     <li class="active">
-                        <a href="./index.html"> Dashboard </a>
+                        <a href="dashboard.jsp"> Dashboard </a>
                     </li>
                     <li>
                         <a href="./CreateAudience.html"> Create Audience </a>
