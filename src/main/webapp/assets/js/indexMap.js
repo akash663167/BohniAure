@@ -338,7 +338,7 @@ $.ajax({
             L.marker([EachLocation.latitude, EachLocation.longitude])
                     .addTo(map)
                     .on("click", (e) => ReturnAreaName(EachLocation.areaName,EachLocation.audienceCount))
-                    .bindPopup(EachLocation.area);
+                    .bindPopup(EachLocation.areaName);
         });
 
     },

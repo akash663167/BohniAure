@@ -99,8 +99,8 @@
                                 <p>Thane</p>
                             </div>
                             <div class="box_area audience_count">
-                                <h1>Project</h1>
-                                <p>5667733</p>
+                                <h1>Audience</h1>
+                                <p>-</p>
                             </div>
 <!--                            <div class="box_area">
                                 <h1>Clubs</h1>
@@ -109,7 +109,7 @@
                             <div class="box_area">
                                 <h1>Corporative Parks</h1>
                                 <p>563009</p>
-                            </div>-->div
+                            </div>-->
                         </div>
                         <div id="mapid"></div>
                     </div>
