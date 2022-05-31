@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.akash.crud.entities.Product;
 import com.akash.crud.entities.User;
 import com.akash.crud.mvc.dao.impl.AudienceRepository;
+import com.akash.crud.mvc.dao.impl.ComMasterRepository;
 import com.akash.crud.mvc.dao.impl.UserDao;
 import com.akash.crud.service.IProductService;
 import java.io.IOException;
@@ -38,17 +39,20 @@ public class MainController {
 
     @Autowired
     private final UserDao userdao;
-    
+
     @Autowired
     private final AudienceRepository audienceRepository;
 
-    public MainController(IProductService ProductService,UserDao userdao,AudienceRepository audienceRepository) {
+    @Autowired
+    private final ComMasterRepository comMasterRepository;
+
+    public MainController(IProductService ProductService, UserDao userdao, AudienceRepository audienceRepository, ComMasterRepository comMasterRepository) {
         this.userdao = userdao;
         this.ProductService = ProductService;
-        this.audienceRepository=audienceRepository;
-                
-    }
+        this.audienceRepository = audienceRepository;
+        this.comMasterRepository = comMasterRepository;
 
+    }
 
     @ModelAttribute
     public void addModalAttribute(Model model) {
@@ -73,12 +77,11 @@ public class MainController {
         return rdd;
     }
 
-    
-    @RequestMapping( value = "/Login",method = RequestMethod.POST)
-    public void loginHandler(@RequestParam(value = "emailid",required = false) String emailid,
-            @RequestParam(value = "password",required = false) String password,
+    @RequestMapping(value = "/Login", method = RequestMethod.POST)
+    public void loginHandler(@RequestParam(value = "emailid", required = false) String emailid,
+            @RequestParam(value = "password", required = false) String password,
             HttpServletRequest request,
-            HttpServletResponse response ) throws IOException, SQLException {
+            HttpServletResponse response) throws IOException, SQLException {
 
         HttpSession session = null;
 
@@ -94,12 +97,17 @@ public class MainController {
             }
         }
     }
-        
-    @RequestMapping(value = "area",produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @RequestMapping(value = "area", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity getAreawiseAudienceData(){
-        System.err.println("audienceRepository"+audienceRepository.findAll());
-        return  ResponseEntity.ok(audienceRepository.findAll());
+    public ResponseEntity getAreawiseAudienceData() {
+        return ResponseEntity.ok(audienceRepository.findAll());
+    }
+
+    @RequestMapping(value = "masterData", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity getMasterData() {
+        return ResponseEntity.ok(comMasterRepository.findAll());
     }
 
 }

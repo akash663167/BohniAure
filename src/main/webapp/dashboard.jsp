@@ -67,10 +67,10 @@
 
                 <nav>
                     <li class="active">
-                        <a href="./index.html"> Dashboard </a>
+                        <a href="./index.jsp"> Dashboard </a>
                     </li>
                     <li>
-                        <a href="./CreateAudience.html"> Create Audience </a>
+                        <a href="./CreateAudience.jsp"> Create Audience </a>
                     </li>
                     <li>
                         <a href="./Audience.html"> My Audience </a>
@@ -100,7 +100,7 @@
                             </div>
                             <div class="box_area audience_count">
                                 <h1>Project</h1>
-                                <p>5667733</p>
+                                <p>-</p>
                             </div>
 <!--                            <div class="box_area">
                                 <h1>Clubs</h1>
@@ -109,7 +109,7 @@
                             <div class="box_area">
                                 <h1>Corporative Parks</h1>
                                 <p>563009</p>
-                            </div>-->div
+                            </div>-->
                         </div>
                         <div id="mapid"></div>
                     </div>

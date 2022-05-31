@@ -1,4 +1,4 @@
-export const Values = {
+export const Values =  {
   Category: ["Real Estate", "Others"],
   City: ["Mumbai"],
   Area: [
@@ -79,4 +79,5 @@ export const Values = {
     "5 months",
     "6 months",
   ],
+  
 };

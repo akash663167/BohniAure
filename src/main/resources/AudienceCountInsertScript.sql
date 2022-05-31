@@ -1,3 +1,9 @@
+
+CREATE SEQUENCE auto_id_seq OWNED BY AREAWISE_AUDIENCE_COUNT.id;
+
+ALTER TABLE AREAWISE_AUDIENCE_COUNT ALTER COLUMN id SET DEFAULT nextval('auto_id_seq');
+
+
     INSERT INTO AREAWISE_AUDIENCE_COUNT (areaName, cityName, audienceCount,latitude,longitude)
     VALUES ('Andheri', 'Mumbai', 100, 19.1136, 72.8697);
 
@@ -172,3 +178,53 @@
 
     INSERT INTO AREAWISE_AUDIENCE_COUNT (areaName, cityName, audienceCount,latitude,longitude)
     VALUES ('Nahur', 'Mumbai', 4700, 19.1553, 72.9438);
+
+
+
+
+
+
+
+
+--------------------------------
+
+	CREATE SEQUENCE com_mst_id_seq OWNED BY com_list_master.id;
+	
+	ALTER TABLE com_list_master ALTER COLUMN id SET DEFAULT nextval('com_mst_id_seq');
+
+
+INSERT INTO public.com_list_master(
+	 category)
+	VALUES ('POI')
+	
+	
+	-------------------------------------
+	
+	
+	CREATE SEQUENCE com_list_dtl_seq OWNED BY com_list_details.id;
+
+ALTER TABLE com_list_details ALTER COLUMN id SET DEFAULT nextval('com_list_dtl_seq');
+
+
+
+
+
+
+----------------
+
+	CREATE SEQUENCE com_mst_id_seq OWNED BY com_list_master.id;
+	
+	ALTER TABLE com_list_master ALTER COLUMN id SET DEFAULT nextval('com_mst_id_seq');
+
+
+INSERT INTO public.com_list_master(
+	 category)
+	VALUES ('POI')
+	
+	
+	-------------------------------------
+	
+	
+	CREATE SEQUENCE com_list_dtl_seq OWNED BY com_list_details.id;
+
+ALTER TABLE com_list_details ALTER COLUMN id SET DEFAULT nextval('com_list_dtl_seq');

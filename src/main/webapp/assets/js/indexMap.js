@@ -321,7 +321,9 @@ let Locations = [
 ];
 
 
+getLocation();
 
+function getLocation(){
 $.ajax({
     method: 'POST',
     url: 'area',
@@ -346,6 +348,8 @@ $.ajax({
        
     }
 });
+
+}
 
 
 

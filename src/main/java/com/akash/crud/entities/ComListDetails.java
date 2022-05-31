@@ -1,5 +1,8 @@
 package com.akash.crud.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
@@ -15,9 +18,8 @@ import org.hibernate.annotations.Immutable;
 
 @Entity
 @Immutable
-@Table(name = "COM_LIST_DETAILS")
-@Access(value=AccessType.FIELD)
-public class ComListDetails {
+@Table(name = "COM_LIST_DETAILS")   
+public class ComListDetails implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -25,6 +27,9 @@ public class ComListDetails {
 	@Column
 	private String description;
 	
+        
+//        @JsonIgnore
+        @JsonBackReference
 	@ManyToOne
 	@JoinColumn(name =  "FK_ComListMasterId")
 	ComListMaster comListMaster;
