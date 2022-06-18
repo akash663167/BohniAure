@@ -1,18 +1,26 @@
 import { Values } from "./Values.js";
 const ORButton = document.querySelector(".or_button button");
-
+let CloseGroupIcon = document.querySelectorAll(".group_wrapper .group .head");
 let CalculateButton = document.querySelector(".calculate_button");
 let SaveAudButton = document.querySelector(".save_aud");
 let CloseIcon = document.querySelector(".close_icon");
 
 let SaveButon = document.querySelector(".save_button_account");
 let Step = 1;
-
+let DataValue = [];
 const CategorySelector = document.querySelectorAll(".category_selection");
-let Category = ["Category", "City", "Area", "POI", "Budget", "Durations"];
+let Category = [ "CITY", "AREA", "POI", "Budget", "DURATION"];
 
 let CurrentActiveCategory = "";
 let LatestSelect;
+
+window.addEventListener("load", (e) => {
+  fetch("/masterData")
+    .then((response) => response.json())
+    .then((json) => {
+      DataValue = json;
+    });
+});
 
 const HandleSelectorValue = (e) => {
   let Value = e.target.value;
@@ -21,6 +29,29 @@ const HandleSelectorValue = (e) => {
   } else {
     ORButton.setAttribute("disabled", true);
   }
+  let trues = 0;
+  document.querySelectorAll(".category_selection").forEach((EachSelect) => {
+    let Select = EachSelect;
+    let opt;
+
+    for (var i = 0, len = EachSelect.options.length; i < len; i++) {
+      opt = Select.options[i];
+
+      if (opt.selected == true) {
+        let Value = opt.value;
+
+        if (Value == e.target.value) {
+          trues++;
+
+          if (trues == 2) {
+            console.log(Value);
+            EachSelect.closest(".row_custom").remove();
+          }
+        }
+      }
+    }
+  });
+
   LatestSelect = e.target;
   CurrentActiveCategory = Value;
   let SubValues = e.target
@@ -34,29 +65,45 @@ const HandleSelectorValue = (e) => {
   DeselectValue.innerHTML = "";
   SelectValue.innerHTML = "";
 
-  Values[Value].forEach((EachValue) => {
+  let filter = DataValue.filter((EachValue) => {
+    if (EachValue.category == e.target.value) {
+      return 1;
+    }
+  });
+
+  console.log(filter);
+
+  console.log(filter[0]["listDetails"]);
+  filter[0]["listDetails"].forEach((EachValue) => {
     DeselectValue.insertAdjacentHTML(
       "beforeend",
-      `<button class="dropdown-item" data-dselect-value=${EachValue} type="button" onclick="dselectUpdate(this, 'dselect-wrapper', 'form-select')">${EachValue}</button>`
+      `<button class="dropdown-item" data-dselect-value=${EachValue.description} type="button" onclick="dselectUpdate(this, 'dselect-wrapper', 'form-select')">${EachValue.description}</button>`
     );
 
     SelectValue.insertAdjacentHTML(
       "beforeend",
-      `<option value=${EachValue}>${EachValue}</option>`
+      `<option value=${EachValue.description}>${EachValue.description}</option>`
     );
   });
 };
 
 const HandleWorking = (e) => {
-  let Filter = Category.filter(
-    (EachCategory) => EachCategory != CurrentActiveCategory
-  );
+  let Filter = Category;
   ORButton.setAttribute("disabled", true);
   let LatestSelect = e.target
     .closest(".group_wrapper")
     .querySelector(".body_area > *:last-child > *:nth-child(2) select");
 
-  LatestSelect.setAttribute("disabled", true);
+  let Parent = LatestSelect.closest(".row_custom").querySelectorAll("select");
+  let SelectMultiple = LatestSelect.closest(".row_custom").querySelector(
+    ".select_right_wrapper"
+  );
+
+  Parent.forEach((EachSelect) => {
+    // EachSelect.setAttribute("disabled", true);
+  });
+  // SelectMultiple.classList.add("disable");
+  console.log(SelectMultiple);
 
   Category = Filter;
 
@@ -149,3 +196,57 @@ SaveButon.addEventListener("click", ClosePopUp);
 
 CalculateButton.addEventListener("click", HandleCalulating);
 ORButton.addEventListener("click", HandleWorking);
+CloseGroupIcon.forEach((EachIcon) => {
+  EachIcon.addEventListener("click", (e) => {
+    e.target.closest(".group_wrapper").querySelector(".body_area").innerHTML = `
+    <div class="row_custom">
+    <div class="or_select">
+      <select class="form-select">
+        <option value="OR">OR</option>
+        <option value="AND">AND</option>
+      </select>
+    </div>
+   
+    <div>
+      <select class="form-select category_selection">
+        <option value="">Select Category</option>
+        <option value="Category">Category</option>
+        <option value="City">City</option>
+        <option value="Area">Area</option>
+        <option value="POI">POI</option>
+        <option value="Budget">Budget</option>
+        <option value="Durations">Durations</option>
+      </select>
+    </div>
+    <div>
+      <select class="form-select" >
+        <option value="Is">Is</option>
+        <option value="Is">Is Not</option>
+       
+      </select>
+    </div>  
+  
+
+    <div class="select_right_wrapper">
+      <select class="form-select sub_values" id="example-area" multiple>
+
+      </select>
+    </div>  
+
+  </div>
+    
+    `;
+
+    dselect(document.querySelector(`#example-area`));
+
+    const CategorySelector = document.querySelectorAll(".category_selection");
+    CategorySelector.forEach((EachCategory) => {
+      EachCategory.addEventListener("change", HandleSelectorValue);
+    });
+
+    Category = ["CITY", "AREA", "POI", "DURATION"];
+
+    CurrentActiveCategory = "";
+    Step = 1;
+  });
+});

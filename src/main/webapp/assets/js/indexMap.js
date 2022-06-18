@@ -321,7 +321,9 @@ let Locations = [
 ];
 
 
+getLocation();
 
+function getLocation(){
 $.ajax({
     method: 'POST',
     url: 'area',
@@ -338,7 +340,7 @@ $.ajax({
             L.marker([EachLocation.latitude, EachLocation.longitude])
                     .addTo(map)
                     .on("click", (e) => ReturnAreaName(EachLocation.areaName,EachLocation.audienceCount))
-                    .bindPopup(EachLocation.areaName);
+                    .bindPopup(EachLocation.area);
         });
 
     },
@@ -346,6 +348,8 @@ $.ajax({
        
     }
 });
+
+}
 
 
 
