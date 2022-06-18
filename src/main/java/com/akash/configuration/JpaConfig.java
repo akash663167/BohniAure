@@ -10,7 +10,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -30,7 +29,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @PropertySource({
-    "classpath:db-dev.properties"
+    "classpath:db-prod.properties"
 })
 @EnableJpaRepositories(basePackages = "com.akash.crud.mvc.dao.impl")
 public class JpaConfig {
@@ -69,6 +68,7 @@ public class JpaConfig {
         hibernateProperties.setProperty("hibernate.cache.use_query_cache", env.getProperty("hibernate.cache.use_query_cache"));
         hibernateProperties.setProperty("hibernate.show_sql","true");
         hibernateProperties.setProperty("hibernate.format_sql","true");
+
         // hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
         return hibernateProperties;
     }
