@@ -77,12 +77,12 @@ const HandleSelectorValue = (e) => {
   filter[0]["listDetails"].forEach((EachValue) => {
     DeselectValue.insertAdjacentHTML(
       "beforeend",
-      `<button class="dropdown-item" data-dselect-value=${EachValue.description} type="button" onclick="dselectUpdate(this, 'dselect-wrapper', 'form-select')">${EachValue.description}</button>`
+      `<button class="dropdown-item" data-dselect-value="${EachValue.description}" type="button" onclick="dselectUpdate(this, 'dselect-wrapper', 'form-select')">${EachValue.description}</button>`
     );
 
     SelectValue.insertAdjacentHTML(
       "beforeend",
-      `<option value=${EachValue.description}>${EachValue.description}</option>`
+      `<option value="${EachValue.description}">${EachValue.description}</option>`
     );
   });
 };
@@ -127,7 +127,7 @@ const HandleWorking = (e) => {
     </select>
   </div>
   <div>
-    <select class="form-select" >
+    <select class="form-select condition" >
       <option value=${`Is ${Step}`}>Is</option>
       <option value=${`Is Not ${Step}`}>Is Not</option>
      
@@ -221,7 +221,7 @@ CloseGroupIcon.forEach((EachIcon) => {
     <div>
       <select class="form-select" >
         <option value="Is">Is</option>
-        <option value="Is">Is Not</option>
+        <option value="IsNot">Is Not</option>
        
       </select>
     </div>  

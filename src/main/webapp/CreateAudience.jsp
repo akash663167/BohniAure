@@ -100,7 +100,7 @@
                                     <div>
                                         <select class="form-select condition" >
                                             <option value="Is">Is</option>
-                                            <option value="Is">Is Not</option>
+                                            <option value="IsNot">Is Not</option>
 
                                         </select>
                                     </div>  

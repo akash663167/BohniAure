@@ -29,7 +29,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @PropertySource({
-    "classpath:db-prod.properties"
+    "classpath:db-dev.properties"
 })
 @EnableJpaRepositories(basePackages = "com.akash.crud.mvc.dao.impl")
 public class JpaConfig {
