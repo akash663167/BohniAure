@@ -31,8 +31,8 @@
                     <span class="close_icon"><i class="fa-solid fa-xmark"></i></span>
                 </div>
                 <div class="body_area">
-                    <input type="text" placeholder="Enter Project Name" />
-                    <input type="text" placeholder="Enter Audience Name" />
+                    <input type="text" placeholder="Enter Project Name"  id="project_name"/>
+                    <input type="text" placeholder="Enter Audience Name"  id="audience_name" />
                 </div>
                 <div class="bottom">
                     <div class="button_wrapper">
@@ -90,13 +90,11 @@
 
                                     <div>
                                         <select class="form-select category_selection">
-                                            <option value="">Select Category</option>
-                                            <option value="Category">Category</option>
-                                            <option value="City">City</option>
-                                            <option value="Area">Area</option>
+                                            <option value="">Select Category</option>   
+                                            <option value="CITY">City</option>
+                                            <option value="AREA">Area</option>
                                             <option value="POI">POI</option>
-                                            <option value="Budget">Budget</option>
-                                            <option value="Durations">Durations</option>
+                                            <option value="DURATION">Duration</option>
                                         </select>
                                     </div>
                                     <div>
@@ -138,9 +136,9 @@
                     <img src="./assets/img/loader.gif"  class="loader" alt="" >
                     <div class="answer">
                         <h1>estimated reach</h1>
-                        <p>203</p>
+                        <p id="est_count">N.A</p>
                     </div>
-                    <button class="save_aud">
+                    <button class="save_aud" id="save-btn">
                         Save Audience
                     </button>
                 </div>
@@ -156,7 +154,7 @@
             // multiple
             dselect(document.querySelector("#example-area"));
 
-            $('#calc-btn').onClick(function (e) {
+            $('#calc-btn').click(function (e) {
                 e.preventDefault();
                 var array = new Array();
                 $('.group_wrapper .group').find('.row_custom').each(function (index, ele) {
@@ -167,13 +165,38 @@
                     array.push(object);
                 });
 
-                console.log('data ========',array);
+                console.log('data ========', array);
+                $.ajax({
+                    method: 'POST',
+                    data: JSON.stringify(array),
+                    url: 'getCategoryAudienceCount',
+                    processData: false,
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (data, textStatus, jqXHR) {
+                        let count = JSON.parse(data);
+                        if(Number(count)>=0)
+                            $('#est_count').text(count);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+
+                    }
+                });
+            });
+
+            $('#save-btn').click(function (e) {
+                e.preventDefault();
+                
+                    var object = new Object();
+                  object['PROJECT_NAME']= $('#project_name').val();
+                  object['AUDIENCE_NAME']= $('#audience_name').val();
+                console.log('data ========', object);
                 $.ajax({
                     method: 'POST',
                     data: JSON.stringify(array),
                     url: 'Login',
                     processData: false,
-                    contentType: false,
+                    contentType: 'false',
                     success: function (data, textStatus, jqXHR) {
 
                     },
@@ -182,6 +205,9 @@
                     }
                 });
             });
+    
+
+
 
         </script>
 

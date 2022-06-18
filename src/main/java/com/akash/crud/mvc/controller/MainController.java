@@ -14,19 +14,25 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.akash.crud.entities.Product;
 import com.akash.crud.entities.User;
+import com.akash.crud.mvc.dao.impl.AreaWiseAudienceRepository;
 import com.akash.crud.mvc.dao.impl.AudienceRepository;
+import com.akash.crud.mvc.dao.impl.CalculateAudienceRepository;
 import com.akash.crud.mvc.dao.impl.ComMasterRepository;
 import com.akash.crud.mvc.dao.impl.UserDao;
 import com.akash.crud.service.IProductService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,16 +47,21 @@ public class MainController {
     private final UserDao userdao;
 
     @Autowired
-    private final AudienceRepository audienceRepository;
+    private final AreaWiseAudienceRepository areaWiseAudienceRepo;
 
     @Autowired
     private final ComMasterRepository comMasterRepository;
 
-    public MainController(IProductService ProductService, UserDao userdao, AudienceRepository audienceRepository, ComMasterRepository comMasterRepository) {
+    @Autowired
+    private final CalculateAudienceRepository calculateAudienceRepository;
+
+    public MainController(IProductService ProductService, UserDao userdao, AreaWiseAudienceRepository areaWiseAudienceRepo,
+            ComMasterRepository comMasterRepository, CalculateAudienceRepository calculateAudienceRepository) {
         this.userdao = userdao;
         this.ProductService = ProductService;
-        this.audienceRepository = audienceRepository;
+        this.areaWiseAudienceRepo = areaWiseAudienceRepo;
         this.comMasterRepository = comMasterRepository;
+        this.calculateAudienceRepository = calculateAudienceRepository;
 
     }
 
@@ -101,13 +112,23 @@ public class MainController {
     @RequestMapping(value = "area", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity getAreawiseAudienceData() {
-        return ResponseEntity.ok(audienceRepository.findAll());
+        return ResponseEntity.ok(areaWiseAudienceRepo.findAll());
     }
 
     @RequestMapping(value = "masterData", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity getMasterData() {
         return ResponseEntity.ok(comMasterRepository.findAll());
+    }
+
+    @RequestMapping(value = "getCategoryAudienceCount", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity getCategoryAudienceCount(@RequestBody List<HashMap<String, Object>> request) throws IOException {
+
+        System.out.println("request  " + request);
+        Long count = calculateAudienceRepository.getData(request);
+
+        return ResponseEntity.ok(count);
     }
 
 }

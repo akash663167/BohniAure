@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
  * @author Admin
  */
 @Repository
-public interface AudienceRepository extends JpaRepository<AreawiseAudienceCount,Long>{
+public interface AreaWiseAudienceRepository extends JpaRepository<AreawiseAudienceCount,Long>{
 
     
 }
